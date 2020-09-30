@@ -6,8 +6,6 @@ export const fetchCountries = async () => {
     const {
       data: { Countries },
     } = await axios.get(url);
-    // return data;
-    // ee.log(Countries);
     return Countries;
   } catch (error) {}
 };

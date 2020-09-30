@@ -17,7 +17,6 @@ export const CountrySelector = ({ handleChange }) => {
       <select
         onChange={(e) => {
           handleChange(e.target.value);
-          // console.log(e.target.value);
         }}
         name="countries"
         id="countries"

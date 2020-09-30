@@ -9,11 +9,8 @@ export const Chart = ({ daily }) => {
         <h2>Loading...</h2>;
       </div>
     );
-  } else {
-    console.log(daily);
   }
   defaults.global.defaultFontColor = "white";
-  // defaults.global.defaultFontFamily = "sans serif";
   defaults.global.defaultFontSize = 10;
   defaults.global.legend.labels.usePointStyle = true;
 

@@ -8,14 +8,15 @@ import { fetchData } from "./api/index";
 import styles from "./App.module.css";
 
 const App = () => {
-  // const [data, setData] = useState({});
-  const [country, setCountry] = useState("global");
+  const [country, setCountry] = useState("Afghanistan");
   const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchAPI = async () => {
-      setData(await fetchData(country));
-      // console.log(await fetchData(country));
+      const data = await fetchData(country);
+      if (data) {
+        setData(data);
+      }
     };
     fetchAPI();
   }, [country]);

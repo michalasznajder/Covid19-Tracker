@@ -21,7 +21,6 @@ export const CountrySelector = ({ handleChange }) => {
         name="countries"
         id="countries"
       >
-        <option value={"global"}>Global</option>
         {countries
           ? countries.map((country, i) => (
               <option key={i} value={country.slug}>

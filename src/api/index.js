@@ -11,28 +11,8 @@ export const fetchCountries = async () => {
 };
 
 export const fetchData = async (country) => {
-  if (country === "global") {
-    const {
-      data: {
-        TotalConfirmed: confirmed,
-        TotalRecovered: recovered,
-        TotalDeaths: deaths,
-      },
-    } = await axios.get("https://api.covid19api.com/world/total");
-
-    const daily = (
-      await axios.get("https://covid19.mathdro.id/api/daily")
-    ).data.map((daily) => {
-      return {
-        confirmed: daily.confirmed.total,
-        deaths: daily.deaths.total,
-        date: new Date(daily.reportDate).toDateString(),
-      };
-    });
-
-    const fullData = { total: { confirmed, recovered, deaths }, daily };
-    return fullData;
-  } else {
+  let fullData = {};
+  try {
     const daily = (
       await axios.get(`https://api.covid19api.com/dayone/country/${country}`)
     ).data
@@ -50,9 +30,9 @@ export const fetchData = async (country) => {
     const { confirmed, recovered, deaths } = daily.length
       ? daily[daily.length - 1]
       : {};
-
-    const fullData = { total: { confirmed, recovered, deaths }, daily };
-
-    return fullData;
+    fullData = { total: { confirmed, recovered, deaths }, daily };
+  } catch (error) {
+    return;
   }
+  return fullData;
 };
